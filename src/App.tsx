@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Volume2, ChevronRight, RotateCcw, Sparkles } from 'lucide-react';
+import { Volume2, ChevronRight, ChevronLeft, RotateCcw, Sparkles } from 'lucide-react';
 import { ALL_LESSONS } from './constants';
 import DrawingPad from './components/DrawingPad';
 
@@ -32,6 +32,12 @@ export default function App() {
       setCurrentIndex(prev => prev + 1);
     } else {
       setIsFinished(true);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(prev => prev - 1);
     }
   };
 
@@ -104,6 +110,15 @@ export default function App() {
                   <Volume2 size={16} />
                   聽口訣
                 </button>
+                {currentIndex > 0 && (
+                  <button
+                    onClick={handlePrev}
+                    className="flex items-center gap-2 px-3 py-1.5 bg-stone-400 text-white font-bold rounded-lg shadow-md hover:bg-stone-500 active:translate-y-0.5 transition-all text-xs"
+                  >
+                    <ChevronLeft size={16} />
+                    上一個字
+                  </button>
+                )}
                 <button
                   onClick={handleNext}
                   className="flex items-center gap-2 px-3 py-1.5 bg-sky-500 text-white font-bold rounded-lg shadow-md hover:bg-sky-600 active:translate-y-0.5 transition-all text-xs"
